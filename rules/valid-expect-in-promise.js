@@ -17,6 +17,7 @@ const isExpectCallPresentInFunction = body => {
     return body.body.find(line => {
       if (line.type === 'ExpressionStatement')
         return isExpectCall(line.expression);
+      /* istanbul ignore else */
       if (line.type === 'ReturnStatement') return isExpectCall(line.argument);
     });
   } else {

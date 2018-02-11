@@ -27,6 +27,7 @@ module.exports = {
   create: context => ({
     CallExpression(node) {
       const callee = node.callee;
+      /* istanbul ignore if */
       if (!callee) {
         return;
       }

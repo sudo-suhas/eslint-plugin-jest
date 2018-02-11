@@ -1,19 +1,16 @@
 'use strict';
 
 function getName(node) {
-  function joinNames(a, b) {
-    return a && b ? a + '.' + b : null;
-  }
-
   switch (node && node.type) {
     case 'Identifier':
       return node.name;
     case 'Literal':
       return node.value;
     case 'MemberExpression':
-      return joinNames(getName(node.object), getName(node.property));
+      return `${getName(node.object)}.${getName(node.property)}`;
   }
 
+  /* istanbul ignore next */
   return null;
 }
 
@@ -66,6 +63,11 @@ module.exports = {
             } else if (suiteDepth > 0) {
               context.report({
                 message: 'Call to pending() within test suite',
+                node,
+              });
+            } else {
+              context.report({
+                message: 'Call to pending()',
                 node,
               });
             }

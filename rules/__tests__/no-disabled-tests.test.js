@@ -81,6 +81,10 @@ ruleTester.run('no-disabled-tests', rules['no-disabled-tests'], {
       ],
     },
     {
+      code: 'pending();',
+      errors: [{ message: 'Call to pending()', column: 1, line: 1 }],
+    },
+    {
       code: 'describe("contains a call to pending", function () { pending() })',
       errors: [
         {
