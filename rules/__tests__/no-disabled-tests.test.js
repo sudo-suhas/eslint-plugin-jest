@@ -15,6 +15,8 @@ ruleTester.run('no-disabled-tests', rules['no-disabled-tests'], {
     'test.only("foo", function () {})',
     'var appliedSkip = describe.skip; appliedSkip.apply(describe)',
     'var calledSkip = it.skip; calledSkip.call(it)',
+    '({ f: function () {} }).f()',
+    '(a || b).f()',
   ],
 
   invalid: [

@@ -1,16 +1,19 @@
 'use strict';
 
 function getName(node) {
+  function joinNames(a, b) {
+    return a && b ? a + '.' + b : null;
+  }
+
   switch (node && node.type) {
     case 'Identifier':
       return node.name;
     case 'Literal':
       return node.value;
     case 'MemberExpression':
-      return `${getName(node.object)}.${getName(node.property)}`;
+      return joinNames(getName(node.object), getName(node.property));
   }
 
-  /* istanbul ignore next */
   return null;
 }
 
